@@ -21,7 +21,7 @@
 		<servlet-name>BitlyBotServiceServlet</servlet-name>
 		<url-pattern>/bitybot/BitlyBotService</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>BitlyBot</servlet-name>
 		<servlet-class>
@@ -32,26 +32,36 @@
 		<servlet-name>BitlyBot</servlet-name>
 		<url-pattern>/_wave/robot/jsonrpc</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>profile</servlet-name>
 		<servlet-class>
 			com.bitybot.server.servlets.BitlyBotProfileServlet
 		</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>profile</servlet-name>
 		<url-pattern>/_wave/robot/profile</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>api</servlet-name>
 		<servlet-class>
 			com.bitybot.server.api.BitlyBotAPI
 		</servlet-class>
-	</servlet>	
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>api</servlet-name>
 		<url-pattern>/shorten</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>xmpp</servlet-name>
+		<servlet-class>com.bitybot.server.xmpp.BitlyBotXmppServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>xmpp</servlet-name>
+		<url-pattern>/_ah/xmpp/message/*</url-pattern>
 	</servlet-mapping>
 </web-app>
