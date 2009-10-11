@@ -37,6 +37,7 @@ public class BitlyBotXmppServlet extends HttpServlet {
 		String shortenMessageString = Util.process(messageString);
 		if (shortenMessageString != null
 				&& !shortenMessageString.equals(messageString)) {
+			@SuppressWarnings("unused")
 			SendResponse response = xmppService
 					.sendMessage(new MessageBuilder().withBody(
 							shortenMessageString).withRecipientJids(fromId)
