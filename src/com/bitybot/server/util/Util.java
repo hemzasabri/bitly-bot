@@ -17,8 +17,8 @@ import org.json.JSONObject;
 @SuppressWarnings("serial")
 public class Util {
 	private static final Logger log = Logger.getLogger(Util.class.getName());
-	public static String URLregex = "((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
-	public static String[][] loginKeyPairs = {
+	private static String URLregex = "((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+	private static String[][] loginKeyPairs = {
 			{ "rahulgarg", "R_2154f1c6ea071f5aaab9cfb73f629e22" },
 			{ "bitlybot", "R_d618b34d2d3944dc76e1c4e88b09fd08" },
 			{ "bitlybot2", "R_788978474267b52019da5cceba23b349" } };
