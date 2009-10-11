@@ -25,6 +25,7 @@ public class BitlyBotAPI extends HttpServlet {
 	private static String OK = "ok";
 	private static final Logger log = Logger.getLogger(BitlyBotAPI.class
 			.getName());
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -37,7 +38,7 @@ public class BitlyBotAPI extends HttpServlet {
 			throws ServletException, IOException {
 		Map<String, String[]> parameterMap = req.getParameterMap();
 		String response = null;
-		String message=null;
+		String message = null;
 		if (parameterMap.containsKey(MESSAGE)
 				&& parameterMap.get(MESSAGE)[0].length() > 0) {
 			message = parameterMap.get(MESSAGE)[0];
@@ -47,15 +48,14 @@ public class BitlyBotAPI extends HttpServlet {
 					resp.setContentType("text/xml");
 					response = getXML(message);
 				} else {
-					
+
 					if (parameterMap.containsKey(CALLBACK))
 						response = getJSON(message,
 								parameterMap.get(CALLBACK)[0]);
-					else{
+					else {
 						resp.setContentType("application/json");
-						response = getJSON(message);						
+						response = getJSON(message);
 					}
-						
 				}
 			} else {
 				resp.setContentType("application/json");
@@ -66,9 +66,8 @@ public class BitlyBotAPI extends HttpServlet {
 		}
 		resp.getOutputStream().print(response);
 		resp.getOutputStream().flush();
-		log.warning("\nBy:API"
-				+ "\nMessage:" + message
-				+ "\nResponse:" + response);
+		log.warning("\nBy:API" + "\nMessage:" + message + "\nResponse:"
+				+ response);
 	}
 
 	private String getJSON(String message) {
@@ -92,9 +91,6 @@ public class BitlyBotAPI extends HttpServlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 			shortenMessage = getErrorJson(message);
-		} catch (IOException e) {
-			e.printStackTrace();
-			shortenMessage = getErrorJson(message);
 		}
 		if (callback != null)
 			shortenMessage = getCallbackJson(callback, shortenMessage);
@@ -113,24 +109,14 @@ public class BitlyBotAPI extends HttpServlet {
 	private String getXML(String message) {
 		StringBuilder response = new StringBuilder("<bitlybot>");
 		String shortenMessage = message;
-		try {
-			shortenMessage = Util.process(message);
-			response.append("<" + STATUS + ">");
-			response.append(OK);
-			response.append("</" + STATUS + ">");
-		} catch (JSONException e) {
-			response.append("<" + STATUS + ">");
-			response.append(ERROR);
-			response.append("</" + STATUS + ">");
-			e.printStackTrace();
-		} catch (IOException e) {
-			response.append("<" + STATUS + ">");
-			response.append(ERROR);
-			response.append("</" + STATUS + ">");
-			e.printStackTrace();
-		}
+
+		shortenMessage = Util.process(message);
+		response.append("<" + STATUS + ">");
+		response.append(OK);
+		response.append("</" + STATUS + ">");
+
 		if (shortenMessage == null)
-			shortenMessage=message;
+			shortenMessage = message;
 		response.append("<" + MESSAGE + ">");
 		response.append(shortenMessage);
 		response.append("</" + MESSAGE + ">");
