@@ -72,7 +72,14 @@ public class BityBot implements EntryPoint {
 		class CustomeHandler implements ClickHandler, KeyUpHandler,
 				FocusHandler, ChangeHandler {
 			public void onClick(ClickEvent event) {
-				if (event.getSource().equals(tweetThis))
+				if(messageField.getText().trim().length()==0){
+					status.setText("No Message");
+					status.setVisible(true);
+					status.removeStyleName("workingStatus");
+					status.removeStyleName("doneStatus");
+					status.addStyleName("errorStatus");
+				}
+				else if (event.getSource().equals(tweetThis))
 					tweetIt();
 				else {
 					sendNameToServer();
